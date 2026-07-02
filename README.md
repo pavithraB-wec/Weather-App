@@ -1,3 +1,5 @@
+<img width="1240" height="2647" alt="WA-2" src="https://github.com/user-attachments/assets/bd78cb25-fac2-4bbb-b790-73ab03b86f95" />
+
 # Skycast Weather App
 
 A modern React + Vite weather dashboard with local unit preference, location support, weather highlights, hourly and daily forecasts, air quality, alerts, and a map display.
