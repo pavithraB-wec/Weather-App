@@ -1,0 +1,296 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --color-primary: #3B82F6;
+  --color-primary-dark: #2563EB;
+  --color-secondary: #60A5FA;
+  --color-surface: #F5FBFF;
+  --color-navbar: #EAF6FF;
+  --color-line: #D6ECFF;
+  --color-hoverblue: #E0F2FE;
+  --color-skyblue: #BAE6FD;
+  --color-cloudblue: #7DD3FC;
+  --color-ink: #0F172A;
+  --color-inkmuted: #64748B;
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+}
+
+/* ==================== Base ==================== */
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #bfdbfe;
+  color: #1e3a5f;
+}
+
+/* ==================== Custom Scrollbars ==================== */
+::-webkit-scrollbar { width: 8px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #bae6fd; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #7dd3fc; }
+
+.scroll-x::-webkit-scrollbar { height: 5px; }
+.scroll-x::-webkit-scrollbar-track { background: transparent; }
+.scroll-x::-webkit-scrollbar-thumb { background: #d6ecff; border-radius: 999px; }
+.scroll-x::-webkit-scrollbar-thumb:hover { background: #7dd3fc; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ==================== Entrance Animations ==================== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.anim-fade-up {
+  animation: fadeUp .65s cubic-bezier(.22,.8,.35,1) both;
+}
+.anim-d-1 { animation-delay: .06s; }
+.anim-d-2 { animation-delay: .12s; }
+.anim-d-3 { animation-delay: .18s; }
+.anim-d-4 { animation-delay: .24s; }
+.anim-d-5 { animation-delay: .30s; }
+.anim-d-6 { animation-delay: .36s; }
+.anim-d-7 { animation-delay: .42s; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.anim-fade-in { animation: fadeIn .5s ease both; }
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.anim-slide-down { animation: slideDown .35s cubic-bezier(.22,.8,.35,1) both; }
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+.anim-scale-in { animation: scaleIn .4s cubic-bezier(.22,.8,.35,1) both; }
+
+/* ==================== Skeleton Shimmer ==================== */
+@keyframes shimmer {
+  0% { background-position: -700px 0; }
+  100% { background-position: 700px 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, #e4f0fb 8%, #f5fbff 30%, #e4f0fb 52%);
+  background-size: 1400px 100%;
+  animation: shimmer 1.8s linear infinite;
+  border-radius: 14px;
+}
+
+/* ==================== Weather Scene Animations ==================== */
+@keyframes cloudDrift {
+  from { transform: translateX(-18%); }
+  to { transform: translateX(115vw); }
+}
+.cloud {
+  position: absolute;
+  animation: cloudDrift linear infinite;
+  opacity: .75;
+  filter: blur(0.5px);
+}
+
+@keyframes rainFall {
+  from { transform: translateY(-14vh) rotate(12deg); opacity: 0; }
+  8% { opacity: .65; }
+  to { transform: translateY(115vh) rotate(12deg); opacity: .15; }
+}
+.raindrop {
+  position: absolute;
+  top: -10vh;
+  width: 1.5px;
+  border-radius: 999px;
+  background: linear-gradient(to bottom, rgba(96,165,250,0), rgba(59,130,246,.6));
+  animation: rainFall linear infinite;
+}
+
+@keyframes snowFall {
+  0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
+  8% { opacity: .85; }
+  100% { transform: translateY(112vh) translateX(40px) rotate(360deg); opacity: .2; }
+}
+.snowflake {
+  position: absolute;
+  top: -10vh;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(186,230,253,.8);
+  animation: snowFall linear infinite;
+}
+
+@keyframes lightningFlash {
+  0%, 89%, 100% { opacity: 0; }
+  90% { opacity: .5; }
+  91% { opacity: .08; }
+  92% { opacity: .35; }
+  94% { opacity: 0; }
+}
+.lightning {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 35% 0%, rgba(219,234,254,.85), transparent 55%);
+  animation: lightningFlash 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: .2; transform: scale(.8); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+.star {
+  position: absolute;
+  border-radius: 999px;
+  background: #fff;
+  animation: twinkle ease-in-out infinite;
+}
+
+@keyframes sunPulse {
+  0%, 100% { transform: scale(1); opacity: .5; }
+  50% { transform: scale(1.15); opacity: .75; }
+}
+.sun-glow { animation: sunPulse 7s ease-in-out infinite; }
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.floaty { animation: floaty 6s ease-in-out infinite; }
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+.breathe { animation: breathe 4s ease-in-out infinite; }
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.spin-slow { animation: spinSlow 14s linear infinite; }
+
+/* ==================== Button Ripple ==================== */
+.ripple-btn { position: relative; overflow: hidden; }
+.ripple-ink {
+  position: absolute;
+  border-radius: 999px;
+  background: rgba(255,255,255,.4);
+  transform: scale(0);
+  animation: ripple .6s ease-out forwards;
+  pointer-events: none;
+}
+@keyframes ripple {
+  to { transform: scale(3.6); opacity: 0; }
+}
+
+/* ==================== Cards ==================== */
+.card {
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: 1.25rem;
+  box-shadow:
+    0 1px 3px rgba(59,130,246,.06),
+    0 6px 24px -6px rgba(59,130,246,.1);
+}
+
+.card-glass {
+  background: rgba(255,255,255,.72);
+  backdrop-filter: blur(16px) saturate(1.6);
+  -webkit-backdrop-filter: blur(16px) saturate(1.6);
+  border: 1px solid rgba(214,236,255,.6);
+  border-radius: 1.25rem;
+  box-shadow:
+    0 1px 3px rgba(59,130,246,.05),
+    0 8px 32px -8px rgba(59,130,246,.12);
+}
+
+.lift {
+  transition: transform .28s cubic-bezier(.22,.8,.35,1), box-shadow .28s ease, border-color .28s ease;
+}
+.lift:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 12px 36px -8px rgba(59,130,246,.2),
+    0 2px 8px rgba(59,130,246,.08);
+  border-color: #bae6fd;
+}
+
+/* ==================== Gradient Text ==================== */
+.gradient-text {
+  background: linear-gradient(135deg, #3B82F6, #60A5FA, #7DD3FC);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ==================== Progress Arcs ==================== */
+.progress-ring {
+  transition: stroke-dashoffset .8s cubic-bezier(.22,.8,.35,1);
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+
+/* ==================== Tooltip ==================== */
+.tooltip {
+  position: relative;
+}
+.tooltip::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) scale(.9);
+  background: #0F172A;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all .2s ease;
+}
+.tooltip:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+/* ==================== Focus Styles ==================== */
+:focus-visible {
+  outline: 2px solid #3B82F6;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* ==================== Temp Bar Gradient ==================== */
+.temp-bar-gradient {
+  background: linear-gradient(90deg, #7DD3FC 0%, #3B82F6 50%, #2563EB 100%);
+}
+
+/* ==================== Sunshine Duration Arc ==================== */
+@keyframes arcGrow {
+  from { stroke-dashoffset: var(--arc-total); }
+  to { stroke-dashoffset: var(--arc-offset); }
+}
